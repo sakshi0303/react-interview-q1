@@ -15,3 +15,18 @@ Please build the following form component
 * Component should have a responsive layout
 * Component should be appropriately styled
 * Unit tests are not required
+
+
+
+#sakshi steps:
+- cd solutions
+- npm install
+- npm install react react-dom react-scripts
+
+-npm start error
+
+Q--->cant resolve web-vitals 
+sol: npm install web-vitals --save
+-npm start
+
+stateful variable are used to deal with changing states even after the page is loaded
