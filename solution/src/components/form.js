@@ -60,6 +60,7 @@ const InputForm = () => {
         setData([]);
         setName('');
         setselectedlocation(locations[0]);
+        setisvalid(true);
 
     };
 
@@ -119,6 +120,7 @@ const InputForm = () => {
 
                         </tr>
                     ))}
+                    
                 </tbody>
             </table>
 

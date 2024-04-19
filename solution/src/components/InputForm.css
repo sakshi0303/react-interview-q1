@@ -13,7 +13,7 @@
     display: flex;
     align-items: center;    
     justify-content: flex-end;
-    margin-bottom: 80px;    
+    margin-bottom: 3px;    
 }
 
 .input-name-row {
@@ -23,7 +23,7 @@
 }
 
 .name-item {
-    margin-bottom: 80px;
+    margin-bottom: 30px;
 }
 
 .input-label {
@@ -58,26 +58,29 @@
 .error-message {
     color: red;
     font-size: 15px;
+    text-align: left;
+    padding-left: 55px;
     
 }
-
 .data-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-}
-
-.data-table th,
-.data-table td {
-    padding: 8px;
+  }
+  
+  .data-table th,
+  .data-table td {
     border: 1px solid #ccc;
     color: #000;
-}
-
-.data-table th {    
+    text-align: left;
+  }
+  
+  .data-table th {    
     color: #fff;
-}
-
-.data-table td {
+    font: small;
+  }
+  
+  .data-table td {
     background-color: #f9f9f9;
-}
+    font: small-caption;
+  }
