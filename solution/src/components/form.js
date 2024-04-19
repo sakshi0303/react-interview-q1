@@ -8,14 +8,15 @@ const InputForm = () => {
     const [name, setName] = useState('');
     const [isvalid, setisvalid] = useState(true);
 
+
     //location
     const [locations, setlocaton] = useState([]);
-    const [selectedlocation, setselectedlocation] = useState(locations.length>0?locations[0]:'');
-    
+    const [selectedlocation, setselectedlocation] = useState(locations.length > 0 ? locations[0] : '');
+
 
     //table 
     const [data, setData] = useState([]);
-    const [duplicatedata, setisDuplicate] = useState(false);
+    
 
     const handlenamechange = async (event) => {
         console.log(event.target.value);
@@ -31,18 +32,25 @@ const InputForm = () => {
     }
 
     const handleAddRow = async () => {
-        // check if this name and location pair already present in data
-        const isDuplicate=data.some(item=>item.name===name && item.location===selectedlocation);
 
-        if(!isDuplicate){
-            await setData([...data, { name, location: selectedlocation }]);
-        }else{
-            console.log('Duplicate entry found!');
-            setisDuplicate(isDuplicate)
+        //check if name is empty
+        if (name.trim()===''){
+            alert("name cannot be empty");
+            return;
+        }
+        // check if this name and location pair already present in data
+        const isDuplicate = data.some(item => item.name === name && item.location === selectedlocation);
+
+        if (isDuplicate){
+            alert("duplicate records cannot be inserted")
+            return;
         }
 
-        setName('');   
-        setselectedlocation(locations.length>0?locations[0]:'');   
+        await setData([...data, { name, location: selectedlocation }]);
+
+        
+        setName('');
+        setselectedlocation(locations.length > 0 ? locations[0] : '');
     };
 
     const handleClearTable = () => {
@@ -54,7 +62,7 @@ const InputForm = () => {
             try {
                 const locations = await getLocations();
                 setlocaton(locations);
-                setselectedlocation(locations.length>0?locations[0]:'');  
+                setselectedlocation(locations.length > 0 ? locations[0] : '');
 
             } catch (error) {
                 console.error('Error fetching locations', error);
@@ -65,29 +73,29 @@ const InputForm = () => {
 
     return (
         <div className="input-form-container">
-            <div>
-                
-                <div style={{ float: 'left', marginRight: '10px' }}>Name:</div>
-                <input type="text" value={name} onChange={handlenamechange} style={{ marginRight: '10px' }} />
-                {!isvalid && <div style={{ color: 'red' }}>Name is taken</div>}
-            </div>
 
-            <div style={{ float: 'left', marginRight: '10px' }}>Location:</div>
-            <select value={selectedlocation} onChange={handleLocationChange}>
-                {locations.map((location) => (
-                    <option key={location} value={location}>
+            <div className="input-label">Name:</div>
+
+            <input type="text" value={name} onChange={handlenamechange} className="input-field" />
+            {!isvalid && <div className="error-message">Name is taken</div>}
+
+            <label className="input-label">Location:</label>
+
+            <select value={selectedlocation} onChange={handleLocationChange} className="select-field">
+                {locations.map((location, index) => (
+                    <option key={index} value={location}>
                         {location}
                     </option>
                 ))}
             </select>
             <div>
-                <button onClick={handleAddRow}>Add</button>
+                <button onClick={handleAddRow} className="btn">Add</button>
 
-                <button onClick={handleClearTable}>Clear</button>
+                <button onClick={handleClearTable} className="btn">Clear</button>
+
                 
-                {duplicatedata && <div style={{ color: 'red' }}>Duplicate entry found!</div>}
             </div>
-            <table>
+            <table className="data-table">
                 <thead>
                     <tr>
                         <th>Name</th>
