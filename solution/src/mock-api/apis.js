@@ -3,7 +3,8 @@
  */
 export const isNameValid = (name) => new Promise((resolve) => {
     setTimeout(() => {
-        resolve(name !== 'invalid name');
+        console.log('api', name)
+        resolve(name !== 'sakshi');
     }, Math.random() * 2000);
 });
 

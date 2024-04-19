@@ -1,12 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
-import DropDown from './components/dropdown';
+import InputForm from './components/form';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <DropDown></DropDown>
+        <InputForm></InputForm>
+
       </header>
     </div>
   );
