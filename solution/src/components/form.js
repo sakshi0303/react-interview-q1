@@ -79,28 +79,30 @@ const InputForm = () => {
 
     return (
         <div className="input-form-container">
+            <div className="name-item">
+                <div className="input-name-row">
+                    <div className="input-label">Name:</div>
+                    <input type="text" value={name} onChange={handlenamechange} className="input-field" />
+                </div>
+                {!isvalid && <div className="error-message">the name has already been taken</div>}
+            </div>
 
-            <div className="input-label">Name:</div>
+            <div className="input-row">
+                <div className="input-label">Location:</div>
 
-            <input type="text" value={name} onChange={handlenamechange} className="input-field" />
-            {!isvalid && <div className="error-message">the name has already been taken</div>}
-            
+                <select value={selectedlocation} onChange={handleLocationChange} className="select-field">
+                    {locations.map((location, index) => (
+                        <option key={index} value={location}>
+                            {location}
+                        </option>
+                    ))}
+                </select>
+            </div>
 
-            <div className="input-label">Location:</div>
 
-            <select value={selectedlocation} onChange={handleLocationChange} className="select-field">
-                {locations.map((location, index) => (
-                    <option key={index} value={location}>
-                        {location}
-                    </option>
-                ))}
-            </select>
-            <div>
+            <div className="input-row">
                 <button onClick={handleAddRow} className="btn">Add</button>
-
                 <button onClick={handleClearTable} className="btn">Clear</button>
-
-
             </div>
             <table className="data-table">
                 <thead>
