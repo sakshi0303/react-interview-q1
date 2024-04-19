@@ -5,24 +5,23 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Reduced shadow */
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack children vertically */
 }
 
 .input-label {
-    display: initial; /* Display as inline block */
-    width: 30%; /* Adjust width as needed */
-    padding-right: 10px; /* Add spacing between label and input */
-    
+    padding-right: 8px; /* Add spacing between label and input */
+    font-size: 14px; /* Adjust font size */
 }
 
 .input-field,
 .select-field {
-    width: 70%; /* Adjust width as needed */
-    display: inline-block; /* Display as inline block */
+    width: calc(100% - 20px); /* Adjusted width */
     padding: 8px;
-    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    margin-bottom: 10px; /* Add margin bottom to create space between fields */
 }
 
 .btn {
@@ -40,17 +39,10 @@
     background-color: #0056b3;
 }
 
-.clear-btn {
-    background-color: #dc3545;
-}
-
-.clear-btn:hover {
-    background-color: #c82333;
-}
-
 .error-message {
     color: red;
-    margin-top: 5px;
+    font-size: 10px;
+    margin-top: 1px; /* Add margin top */
 }
 
 .data-table {

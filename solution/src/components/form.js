@@ -16,7 +16,7 @@ const InputForm = () => {
 
     //table 
     const [data, setData] = useState([]);
-    
+
 
     const handlenamechange = async (event) => {
         console.log(event.target.value);
@@ -34,27 +34,33 @@ const InputForm = () => {
     const handleAddRow = async () => {
 
         //check if name is empty
-        if (name.trim()===''){
+        if (name.trim() === '') {
             alert("name cannot be empty");
+            return;
+        }
+        console.log(isvalid)
+        if (!isvalid) {
+            alert("name cannot be " + name.trim());
             return;
         }
         // check if this name and location pair already present in data
         const isDuplicate = data.some(item => item.name === name && item.location === selectedlocation);
 
-        if (isDuplicate){
+        if (isDuplicate) {
             alert("duplicate records cannot be inserted")
             return;
         }
 
         await setData([...data, { name, location: selectedlocation }]);
-
-        
         setName('');
         setselectedlocation(locations.length > 0 ? locations[0] : '');
     };
 
     const handleClearTable = () => {
         setData([]);
+        setName('');
+        setselectedlocation(locations[0]);
+
     };
 
     useEffect(() => {
@@ -77,9 +83,10 @@ const InputForm = () => {
             <div className="input-label">Name:</div>
 
             <input type="text" value={name} onChange={handlenamechange} className="input-field" />
-            {!isvalid && <div className="error-message">Name is taken</div>}
+            {!isvalid && <div className="error-message">the name has already been taken</div>}
+            
 
-            <label className="input-label">Location:</label>
+            <div className="input-label">Location:</div>
 
             <select value={selectedlocation} onChange={handleLocationChange} className="select-field">
                 {locations.map((location, index) => (
@@ -93,7 +100,7 @@ const InputForm = () => {
 
                 <button onClick={handleClearTable} className="btn">Clear</button>
 
-                
+
             </div>
             <table className="data-table">
                 <thead>
