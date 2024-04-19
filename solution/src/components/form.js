@@ -1,23 +1,18 @@
+//Author: Sakshi
 import React, { useEffect, useState } from "react";
 import { getLocations, isNameValid } from "../mock-api/apis";
 import "./InputForm.css";
 
 const InputForm = () => {
 
-    //name
+    //----------------------------< state variables >-----------------------------
     const [name, setName] = useState('');
     const [isvalid, setisvalid] = useState(true);
-
-
-    //location
     const [locations, setlocaton] = useState([]);
     const [selectedlocation, setselectedlocation] = useState(locations.length > 0 ? locations[0] : '');
-
-
-    //table 
     const [data, setData] = useState([]);
 
-
+    //----------------------------< functions >-----------------------------
     const handlenamechange = async (event) => {
         console.log(event.target.value);
         setName(event.target.value);
@@ -32,18 +27,17 @@ const InputForm = () => {
     }
 
     const handleAddRow = async () => {
-
-        //check if name is empty
         if (name.trim() === '') {
             alert("name cannot be empty");
             return;
         }
-        console.log(isvalid)
-        if (!isvalid) {
+        const _isValid = await isNameValid(name)
+        setisvalid(_isValid)
+        console.log(_isValid)
+        if (!_isValid) {
             alert("name cannot be " + name.trim());
             return;
         }
-        // check if this name and location pair already present in data
         const isDuplicate = data.some(item => item.name === name && item.location === selectedlocation);
 
         if (isDuplicate) {
@@ -64,6 +58,7 @@ const InputForm = () => {
 
     };
 
+    //----------------------------< side effects >-----------------------------
     useEffect(() => {
         const fetchlocation = async () => {
             try {
@@ -78,6 +73,8 @@ const InputForm = () => {
         fetchlocation();
     }, []);
 
+
+    //----------------------------< component DOM >-----------------------------
     return (
         <div className="input-form-container">
             <div className="name-item">
