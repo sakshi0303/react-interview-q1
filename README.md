@@ -16,3 +16,4 @@ Please build the following form component
 * Component should be appropriately styled
 * Unit tests are not required
 
+![alt text](image.png)
